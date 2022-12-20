@@ -42,6 +42,7 @@ impl Client {
         }
 
         if let Some(ptt) = group_message_part.ptt {
+            #[cfg(lite_version_disabled)]
             self.handler
                 .handle(QEvent::GroupAudioMessage(GroupAudioMessageEvent {
                     client: self.clone(),
@@ -152,6 +153,7 @@ impl Client {
                     let i_type = r.get_u8();
                     r.get_u8();
                     match i_type {
+                        #[cfg(lite_version_disabled)]
                         0x0c => {
                             let operator = r.get_u32() as i64;
                             if operator == self.uin().await {
