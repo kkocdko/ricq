@@ -220,7 +220,11 @@ impl Client {
                                     self.handler
                                         .handle(QEvent::GroupPoke(GroupPokeEvent {
                                             client: self.clone(),
-                                            inner: GroupPoke { sender, receiver },
+                                            inner: GroupPoke {
+                                                group_code,
+                                                sender,
+                                                receiver,
+                                            },
                                         }))
                                         .await;
                                 }
